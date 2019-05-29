@@ -32,5 +32,5 @@ http://localhost:5000
 Access Kibana with all the captured data:
 
 ```
-http://localhost:5601/
+http://localhost:5601
 ```
