@@ -1,6 +1,6 @@
 # Observability with Elastic - Slides and Demo
 
-Talk given at 5. May 2019 at the Elasticsearch user group in Vienna.
+Talk given at 28. May 2019 at the Elasticsearch user group in Vienna.
 
  
 Slides: 
