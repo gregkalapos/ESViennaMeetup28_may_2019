@@ -7,23 +7,20 @@ namespace DbService.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Sample",
-                columns: table => new
+                "Sample",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("MySQL:AutoIncrement", true),
-                    Value = table.Column<long>(nullable: false)
+                    Value = table.Column<long>()
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sample", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Sample", x => x.Id); });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Sample");
+                "Sample");
         }
     }
 }

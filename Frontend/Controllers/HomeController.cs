@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Elastic.Apm;
-using Microsoft.AspNetCore.Mvc;
 using Frontend.Models;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Frontend.Controllers
 {
     public class HomeController : Controller
     {
+        private static double? CurrencyRate;
+
         public async Task<IActionResult> Index()
         {
             var httpClient = new HttpClient();
@@ -25,7 +24,7 @@ namespace Frontend.Controllers
             {
                 //this could be done in parallel with the other call and await with Task.WhenAll
                 //but that's not the case and you can see it in Kibana.
-                
+
                 //using a private access key here - no guarantee it works forever,
                 //get your private key here: https://fixer.io
                 var currencyConv = await httpClient.GetAsync(
@@ -44,18 +43,15 @@ namespace Frontend.Controllers
             else
             {
                 //a primitive caching to create custom spans with the agent API
-                Agent.Tracer.CurrentTransaction.CaptureSpan("ReadCurrencyRate", "Cache", (s) =>
+                Agent.Tracer.CurrentTransaction.CaptureSpan("ReadCurrencyRate", "Cache", s =>
                 {
-                    s.Tags["CachedCurrencyRate"] = CurrencyRate.ToString();
-                    ViewData["retVal"] = $"{longVal} EUR is {CurrencyRate * longVal} USD"; 
+                    s.Labels["CachedCurrencyRate"] = CurrencyRate.ToString();
+                    ViewData["retVal"] = $"{longVal} EUR is {CurrencyRate * longVal} USD";
                 });
-               
             }
 
             return View();
         }
-
-        private static double? CurrencyRate;
 
         public IActionResult About()
         {

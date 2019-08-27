@@ -9,17 +9,11 @@
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.10" />
         <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.16" />
+        <PackageReference Include="Elastic.Apm.NetCoreAll" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>
         <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet"
                                 Version="2.0.3" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Elastic.Apm.All, Version=0.0.2.0, Culture=neutral, PublicKeyToken=ae7400d2c189cf22">
-        <HintPath>Agent\Elastic.Apm.All.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
 </Project>
